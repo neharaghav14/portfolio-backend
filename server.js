@@ -1,29 +1,26 @@
+// portfolio-backend/server.js
+
 import express from "express";
-import mongoose from "mongoose";
-import aboutRoutes from "./routes/aboutRoutes.js";
 import cors from "cors";
+import dotenv from "dotenv";
+import aboutRoutes from "./routes/aboutRoutes.js";
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(cors());
 app.use(express.json());
 
-// ✅ MongoDB Connect
-mongoose
-  .connect(
-    "mongodb+srv://kusum14032000_db_user:JdhqEuqm8gBgc6Z6@portfoliocluster.atjdlyo.mongodb.net/portfolioDB?retryWrites=true&w=majority&appName=portfolioCluster"
-  )
-  .then(() => console.log("✅ MongoDB connected!"))
-  .catch((err) => console.log("❌ DB Error:", err));
-
-// ✅ Routes
-app.use("/about", aboutRoutes);
-
-// ✅ Default Route
+// Test route
 app.get("/", (req, res) => {
-  res.send("Server Running ✅");
+  res.json({ message: "Portfolio backend running!" });
 });
 
-// ✅ Start Server
-app.listen(5000, () => {
-  console.log("🚀 Server started on port 5000");
+// About routes
+app.use("/about", aboutRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
