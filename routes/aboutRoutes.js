@@ -3,6 +3,6 @@ import { getAbout } from "../controllers/aboutController.js";
 
 const router = express.Router();
 
-router.get("/", getAbout);  // IMPORTANT: "/" only
+router.get("/", getAbout);
 
 export default router;
