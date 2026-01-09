@@ -1,10 +1,9 @@
-// controllers/aboutController.js
 export const getAbout = (req, res) => {
-  console.log("About route hit!"); // debug log
+  console.log("About route hit!");  // debug
   res.json({
     name: "Neha Raghav",
     role: "Software Developer",
-    location: "New Delhi",
-    description: "Passionate about building modern web applications."
+    location: "Dashrathpuri, Delhi",
+    description: "Full-stack developer building portfolio."
   });
 };

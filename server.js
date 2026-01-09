@@ -1,26 +1,13 @@
-// portfolio-backend/server.js
-
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import aboutRoutes from "./routes/aboutRoutes.js";
-
-dotenv.config();
+// server.js (portfolio-backend/)
+import express from 'express';
+import cors from 'cors';
+import aboutRoutes from './routes/aboutRoutes.js';  // import add
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({ origin: ['http://localhost:3000', 'https://neharaghav-portfolio.vercel.app'] }));
 app.use(express.json());
 
-// Test route
-app.get("/", (req, res) => {
-  res.json({ message: "Portfolio backend running!" });
-});
+app.use('/about', aboutRoutes);  // route mount
 
-// About routes
-app.use("/about", aboutRoutes);
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+app.listen(5000, () => console.log('Backend: http://localhost:5000/about'));
